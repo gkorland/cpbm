@@ -160,6 +160,12 @@
 			<name>Maven mirror</name>
 			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
 		</repository>
+		<repository>
+			<id>org.cloudifysource</id>
+			<name>CloudifySource</name>
+			<url>http://maven-repository.cloudifysource.org</url>
+		</repository>
+		
 	</repositories>
 
 
