@@ -4,3 +4,7 @@ cpbm
 ====
 
 Cloudify - CloudPortal Cloud Service Connector 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gkorland/cpbm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
