@@ -165,8 +165,5 @@
 			<name>CloudifySource</name>
 			<url>http://maven-repository.cloudifysource.org</url>
 		</repository>
-		
 	</repositories>
-
-
 </project>
