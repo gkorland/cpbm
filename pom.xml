@@ -165,5 +165,6 @@
 			<name>CloudifySource</name>
 			<url>http://maven-repository.openspaces.org</url>
 		</repository>
+		
 	</repositories>
 </project>
