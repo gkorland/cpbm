@@ -163,7 +163,7 @@
 		<repository>
 			<id>org.cloudifysource</id>
 			<name>CloudifySource</name>
-			<url>http://maven-repository.cloudifysource.org</url>
+			<url>http://maven-repository.openspaces.org</url>
 		</repository>
 	</repositories>
 </project>
