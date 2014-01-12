@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Service>
+	<Bootstrap>
+		<Id type="CLOUD" singleton="false" category="IAAS">com.company1.service1</Id>
+		<Connector ref="myconnector"/>
+		<Image type="logo" >logo.jpg</Image>	
+		<Image type="banner" >banner.png</Image>	
+		<Vendor version="0.0.1-SNAPSHOT">Company1</Vendor>
+		<Locales>en_US, ja_JP, ko_KR</Locales>
+
+		<Configuration>
+			<Property id="endpoint" type="URL" encrypted="false" validation='{"required":true}' />
+			<Property id="username" type="String" encrypted="false" validation='{"required":true}'/>
+			<Property id="password" type="String" encrypted="true" validation='{"required":true}' />
+			<Property id="accountid" type="Number" encrypted="false" validation='{"required":true,"digit":false,"minlen":5,"maxlen":10}' />
+			<Property id="country" type="String" encrypted="false" validation='{"required":false}' />
+		</Configuration>
+		<AccountConfiguration>
+			<Property id="myAccountConfig1"  type="String" encrypted="false" validation='{"required":true}' />
+			<Property id="myAccountConfig2"  type="String" encrypted="false" validation='{"required":true}' />
+		</AccountConfiguration>
+	</Bootstrap>
+	
+	<AccountControls>
+		<Property id="myAccountControlProp1" type="Boolean" validation='{"required":false}'/>
+		<Property id="myAccountControlProp2" type="Integer" validation='{"required":true}' />
+	</AccountControls>
+
+  <ResourceMetadata>
+    <ResourceType name="VirtualMachine" constraint="PER_USER" componentSelector="MyComponentSelecter.jsp">
+       <Properties editor="createVirtualMachine.jsp">
+         <Property id="vmName" type="String" validation='{"required":true}'/>
+         <Property id="groupName" type="String" validation='{"required":true}'/>
+       </Properties>
+      <Group name="fromTemplate">
+        <Component name="SO" discriminator="soId" reconfigurable="true"/>
+        <Component name="Template" discriminator="templateId" />
+      </Group>
+      <Group name="fromISO">
+        <Component name="SO" discriminator="soId" reconfigurable="true" />
+        <Component name="ISO" discriminator="templateId" />
+        <Component name="Template" discriminator="templateId" />
+        <Component name="hypervisor" discriminator="hypervisor" />
+      </Group>
+      <Group name="dummyComponentOneGroup">
+        <Component name="dummyComponentOne" discriminator="dummyDiscriminatorOne" />
+      </Group>
+      <Group name="dummyComponentThreeGroup">
+        <Component name="dummyComponentThree" discriminator="dummyDiscriminatorThree" />
+      </Group>
+    <Generates>
+    <Usage>RUNNING_VM</Usage>
+    <Usage>ALLOCATED_VM</Usage>
+    </Generates>
+    </ResourceType>
+    <ResourceType name="Network">
+        <Properties>
+          <Property id="com.citrix.cloudplatform.iaas.adminkey" type="String" validation='{"required":true}'/>
+        </Properties>
+      <Group name="NetworkOfferingGroup">
+        <Component name="NetworkOffering" discriminator="dummyDiscriminatorNetwork" />
+      </Group>
+    <Generates>
+    <Usage>NETWORK_BYTES_IN</Usage>
+    <Usage>NETWORK_BYTES_OUT</Usage>
+     </Generates>
+    </ResourceType>
+    <ResourceType name="dummyResource">
+      <Group name="dummyComponentTwoAndFourGroup">
+        <Component name="dummyComponentTwo" discriminator="dummyDiscriminatorForDummyComponentTwo" />
+        <Component name="dummyComponentfour" discriminator="dummyDiscriminatorForDummyComponentfour" />
+      </Group>
+      <Depends type="ADD_ON">xyzService/abcResource</Depends>
+    <Generates>
+    <Usage>NETWORK_BYTES_IN</Usage>
+    <Usage>NETWORK_BYTES_OUT</Usage>
+    </Generates>
+    </ResourceType>
+    <UsageType name="dummyUsage" clone="xyzService/abcResource" uom="KB" />
+    <UsageType name="RUNNING_VM" uom="GB">
+      <Discriminator>CPU</Discriminator>
+      <Discriminator>RAM</Discriminator>
+    </UsageType>
+    <UsageType name="ALLOCATED_VM" uom="dummy" />
+    <UsageType name="VOLUME" uom="GB" >
+      <Discriminator>root</Discriminator>
+      <Discriminator>storagePoolTag</Discriminator>
+    </UsageType>
+    <UsageType name="NETWORK_BYTES_IN" uom="KB" />
+    <UsageType name="NETWORK_BYTES_OUT" uom="KB" />
+    <Filter name="zoneId" />
+    <Filter name="dummyFilter" />
+  </ResourceMetadata>
+  
+  
+  <Roles>
+		<Role name="ROLE_CLOUD_MANAGEMENT1" scope="GLOBAL_ADMIN" />
+		<Role name="ROLE_ACCOUNT_CLOUD_MANAGEMENT1" scope="TENANT_ADMIN" />
+		<Role name="ROLE_USER_CLOUD_MANAGEMENT1" scope="TENANT" />
+  </Roles>
+  
+</Service>

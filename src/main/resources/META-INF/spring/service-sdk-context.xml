@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- regular spring configuration file defining the beans for this bundle. 
+		We've kept the osgi definitions in a separate configuration file so that 
+		this file can easily be used for integration testing outside of an OSGi environment -->
+
+	 <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+   <bean name="myconnector" class="org.cloudifysource.cpbm.cs.sdk.connector.MyCloudServiceConnectorImpl"/>
+   <bean name="myService" class="org.cloudifysource.cpbm.cs.sdk.service.MyServiceImpl" scope="prototype"/>
+   <bean name="metadataRegistry" class="org.cloudifysource.cpbm.cs.sdk.connector.MyMetadataRegistry" scope="prototype"/>
+   <bean name="accountLifecycleHandler" class="org.cloudifysource.cpbm.cs.sdk.lifecycle.handlers.MyAccountLifeCycleHandler" scope="prototype"/>
+   <bean name="userLifecycleHandler" class="org.cloudifysource.cpbm.cs.sdk.lifecycle.handlers.MyUserLifeCycleHandler" scope="prototype"/>
+   <bean name="subscriptionLifecycleHandler" class="org.cloudifysource.cpbm.cs.sdk.lifecycle.handlers.MySubscriptionLifecycleHandler" scope="prototype"/>
+   <bean name="usageCollector" class="org.cloudifysource.cpbm.cs.sdk.collectors.MyUsageCollector" scope="prototype"/>
+   <bean name="eventCollector" class="org.cloudifysource.cpbm.cs.sdk.collectors.MyEventCollector" scope="prototype"/>
+   <bean name="viewResolver" class="org.cloudifysource.cpbm.cs.sdk.views.MyViewResolver" scope="prototype"></bean>
+</beans>
